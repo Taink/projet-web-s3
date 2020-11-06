@@ -4,4 +4,14 @@ h1{
 
 body{
   background-color: black;
+  font-family: "Consolas";
+}
+
+p{
+  color : #ffffff;
+}
+
+@font-face{
+  font-family :'Consolas';
+  src :url("Consolas.ttf") format(truetype);
 }
