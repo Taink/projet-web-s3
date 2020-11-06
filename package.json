@@ -1,5 +1,7 @@
 {
-  "engines": {"node": "^14.15.0"},
+  "engines": {
+    "node": "^14.15.0"
+  },
   "engineStrict": true,
   "name": "web-serv",
   "version": "1.0.0",
@@ -8,7 +10,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,10 @@
   },
   "homepage": "https://github.com/Taink/web-serv-projets#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
