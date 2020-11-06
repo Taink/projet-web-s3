@@ -4,7 +4,7 @@ h1{
 
 body{
   background-color: black;
-  font-family: "Consolas";
+  font-family: Consolas, monospace;
 }
 
 p{
