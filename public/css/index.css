@@ -1,17 +1,26 @@
-h1{
-  color : #ffffff;
+@font-face{
+  font-family :'Consolas';
+  src :url("Consolas.ttf") format(truetype);
 }
 
-body{
+body {
   background-color: black;
-  font-family: Consolas, monospace;
+  padding: 50px;
+  font: 14px Consolas, monospace;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+h1{
+  color : #ffffff;
 }
 
 p{
   color : #ffffff;
 }
 
-@font-face{
-  font-family :'Consolas';
-  src :url("Consolas.ttf") format(truetype);
+a {
+  color: #00B7FF;
 }
