@@ -14,13 +14,8 @@ app.engine('velux', (filePath, options, callback) => {
     fs.readFile(filePath, (err, data) => {
         let rendered = data.toString();
 
-        //console.log(options)
-
         rendered = rendered.replace(/{{ .+ }}/g, (match) => {
-            console.log(match);
             const option = /{{ (.+) }}/.exec(match)[1];
-
-            console.log
 
             if (options.hasOwnProperty(option)) {
                 return options[option];
