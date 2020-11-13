@@ -10,7 +10,7 @@
 <body>
     <form action="/login" method="post">
         <div class="Formulaire">
-        <h1>Welcome bakc on the Velux Engine</h1>
+        <h1>Welcome back on the Velux Engine</h1>
         <h3>Please login here</h3>
 
         <label for "Username"><b>Username</b></label>
