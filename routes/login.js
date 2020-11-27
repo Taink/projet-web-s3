@@ -4,10 +4,9 @@ const userController = require('../controllers/user');
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
-    const regUsersObj = {
-        'tnk': '123'
-    }
-    res.render('login', { title: 'Login!', message: 'Wooooaoaw', regUsersObj });
+    res.send(require('../pages/register')(
+    
+    ))
 });
 
 /* POST register page. */

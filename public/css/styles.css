@@ -17,17 +17,20 @@ h1,p,h3,a {
 }
 
 h1{
-  color : #ffffff;
+  color : #fff;
 }
 
 h3{
-  color : #ffffff;
+  color : #fff;
 }
 
 p{
-  color : #ffffff;
+  color : #aaa;
 }
 
 a {
-  color: #00B7FF;
+  color: #ccc;
+}
+a:hover {
+  color: #fff;
 }

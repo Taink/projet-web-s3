@@ -8,16 +8,9 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	const myComplexVar = {
-		id: 'fzeqf',
-		test: 'zfqefzqf'
-	}
-	
-	res.send(html`
-	<div>
-		<p>${myComplexVar.id} - ${myComplexVar.test}</p>
-	</div>
-	`)
+	res.send(require('../pages/index')(
+		
+	))
 });
 
 router.use('/register', registerRouter);

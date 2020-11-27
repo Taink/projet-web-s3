@@ -4,7 +4,9 @@ const userController = require('../controllers/user');
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
-    res.render('register', { title: 'Register!', message: 'Wooooaoaw' });
+    res.send(require('../pages/register')(
+		
+    ))
 });
 
 /* POST register page. */
