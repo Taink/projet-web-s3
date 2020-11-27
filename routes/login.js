@@ -4,14 +4,16 @@ const userController = require('../controllers/user');
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
-    res.render('register', { title: 'Register!', message: 'Wooooaoaw' });
+    const regUsersObj = {
+        'tnk': '123'
+    }
+    res.render('login', { title: 'Login!', message: 'Wooooaoaw', regUsersObj });
 });
 
 /* POST register page. */
 router.post('/', function(req, res, next) {
-    let { Username: name, Password: pass, RepPassword: rpass } = req.body;
-    res.redirect('/login');
-    res.send(`Password for user ${name}: ${pass} (confirmation: ${rpass})`);
+    let { Username: name, Password: pass } = req.body;
+    res.send(`Password for user ${name}: ${pass}`);
 });
 
 module.exports = router;
