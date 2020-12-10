@@ -2,9 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const fs = require('fs');
 const multer = require('multer');
-
 
 const { secret } = require('./config.json');
 const routes = require('./routes/index');
