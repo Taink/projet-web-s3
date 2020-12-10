@@ -1,16 +1,16 @@
-const { html, safeHtml } = require('common-tags')
+const { html, safeHtml } = require('common-tags');
 
 /**
- * 
+ *
  * @param {string} title html <title> tag content
  * @param {string|string[]} styles stylesheets url
  * @param {string} [desc] description for meta
  * @param {string} [author='Taink'] author for meta
- * @param  {...string} [keywords=['']] 
+ * @param  {...string} [keywords=['']]
  */
 function getFoot() {
-    return html`
+	return html`
 </body>
-</html>`
+</html>`;
 }
 module.exports = getFoot;

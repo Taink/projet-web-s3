@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -37,7 +37,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(multer().array());
-app.use(session({secret}));
+app.use(
+	session({
+		secret,
+		resave: true,
+		saveUninitialized: true,
+	})
+);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
