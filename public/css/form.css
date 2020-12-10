@@ -1,0 +1,44 @@
+/* Style all input fields */
+input, button {
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    background-color: #181a1b;
+    color: #ddd;
+}
+
+form {
+    color: #eee;
+    margin-left: 5%;
+    border-left: 4px #cfcfcf solid;
+    padding: 6px 2%;
+    max-width: 450px;
+    background-color: #0e0f0f;
+}
+
+form .form-body {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+form .form-foot {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+}
+
+.form-el label {
+    display:block;
+}
+
+form .form-sep {
+    width: 95%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-top: 2px #aaa solid;
+}
