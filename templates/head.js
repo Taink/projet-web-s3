@@ -11,7 +11,7 @@ const { html, safeHtml } = require('common-tags');
 function getHead(title, styles, desc = '', author = 'Taink', ...keywords) {
 	getStyleTag = (style) => `<link rel="stylesheet" href="${style}">`;
 	return html` <!DOCTYPE html>
-		<html lang="fr">
+		<html>
 			<head>
 				<meta charset="UTF-8" />
 				<meta
@@ -20,6 +20,8 @@ function getHead(title, styles, desc = '', author = 'Taink', ...keywords) {
 				/>
 				<meta name="description" content="${desc | ''}" />
 				<meta name="author" content="${author}" />
+				<meta name="og:description" content="${desc | ''}" />
+				<meta name="og:author" content="${author}" />
 				<meta
 					name="keywords"
 					content="${Array.isArray(keywords)
@@ -34,7 +36,6 @@ function getHead(title, styles, desc = '', author = 'Taink', ...keywords) {
 
 				<title>${title}</title>
 			</head>
-			<body></body>
-		</html>`;
+			<body>`;
 }
 module.exports = getHead;
