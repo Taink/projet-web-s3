@@ -47,6 +47,38 @@ const confirmUser = async (db, name, password) => {
 	return bcrypt.compare(password, dbHash);
 };
 
+
+/**
+ * @param {Promise<Database>} db
+ * @param {string} newUsername
+ * @param {string} OldUsername
+ */
+const modifyUsername = async (db, newUsername, OldUsername) => {
+	return (await db).run(
+		'UPDATE users SET name = ? WHERE name = ?',
+		newUsername,
+		OldUsername
+	);
+};
+
+/**
+ * @param {Promise<Database>} db
+ * @param {string} newPassword
+ * @param {string} OldPassword
+ */
+const modifyPassword = async (db, OldPassword, newPassword, username) => {
+	if (confirmUser(db, username, OldPassword) == true) {
+			const hashPass = await bcrypt.hash(newPassword, SALT_ROUNDS);
+			return (await db).run(
+			'UPDATE users SET password = ? WHERE password = ?',
+			hashPass,
+			OldPassword
+		);
+	}
+};
+
+
+
 module.exports = {
 	createUserTable,
 	insertUser,
