@@ -1,57 +1,50 @@
-const { Database } = require('sqlite3');
+const { Database } = require('sqlite');
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const SALT_ROUNDS = 10;
 
 /**
- * @param {Database} db
+ * @param {Promise<Database>} db
  */
-const createUserTable = (db) => {
-	let stmt = db.prepare(
-		`CREATE TABLE IF NOT EXISTS users ( 
+const createUserTable = async (db) => {
+	await db.exec(`CREATE TABLE IF NOT EXISTS users ( 
         user_id INTEGER PRIMARY KEY AUTOINCREMENT,
         name NVARCHAR(25) UNIQUE NOT NULL,
         password TEXT NOT NULL
-        )`,
-		(err) => {
-			if (err) {
-				console.error('table already exists');
-			} else {
-				console.log('Creation successful');
-			}
-		}
+        )`);
+};
+
+/**
+ *
+ * @param {Promise<Database>} db
+ * @param {string} name
+ * @param {string} password
+ */
+const insertUser = async (db, name, password) => {
+	const hashPass = await bcrypt.hash(password, SALT_ROUNDS);
+	return (await db).run(
+		'INSERT INTO users (name, password) VALUES (?,?)',
+		name,
+		hashPass
 	);
-	stmt.run();
 };
 
-const insertUser = (db, name, password) => {
-	let stmt = db.prepare(`INSERT INTO users (name,password) VALUES(?,?) `);
-	bcrypt.hash(password, saltRounds, function (err, hash) {
-		stmt.run(name, hash);
-	});
-};
-
-const confirmUser = (db, name, password) => {
+/**
+ * Confirms wether the user (ie name/password pair) exists in the database
+ * @param {Promise<Database>} db
+ * @param {string} name
+ * @param {string} password
+ */
+const confirmUser = async (db, name, password) => {
 	//return true si l'utilisateur existe et que le password est bon
-	let stmt = db.prepare(
-		`SELECT name Name,password Password FROM users WHERE name=?`
-	);
-	db.get(stmt, name, (err, row) => {
-		if (err) {
-			console.error('Username/password not found');
-			return false;
-		} else {
-			let dbHash = row.password;
-			bcrypt.compare(password, dbHash, function (err, result) {
-				if (result === true) {
-					console.log("it's a match :)");
-					return true;
-				} else {
-					console.error('Wrong password :(');
-					return false;
-				}
-			});
-		}
-	});
+	const { password: dbHash } =
+		(await (await db).get(
+			'SELECT name, password FROM users WHERE name = ?',
+			name
+		)) || '';
+
+	if (!dbHash) return false;
+
+	return bcrypt.compare(password, dbHash);
 };
 
 module.exports = {
