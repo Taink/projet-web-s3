@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user');
+const { safeHtml } = require('common-tags');
 
 /* GET register page. */
 router.get('/', function (req, res, next) {
@@ -18,7 +19,7 @@ router.post('/', function (req, res, next) {
 			require('../pages/register')('The two passwords are different!')
 		);
 	}
-	userController.insert(name, pass).then((result) => {
+	userController.insert(safeHtml(name), pass).then((result) => {
 		console.log(result.changes.toString());
 		res.redirect('/login');
 	});
