@@ -1,14 +1,15 @@
+const User = require('../db/models/User');
+const db = require('../db/db');
 
-
-const index = async() => {
-
+async function login(name, pass) {
+	return User.confirmUser(db, name, pass);
 }
 
-const store = async(request) => {
-    request
+async function insert(name, pass) {
+	return User.insertUser(db, name, pass);
 }
 
 module.exports = {
-    index,
-    store
+	login,
+	insert,
 };
