@@ -10,10 +10,21 @@ router.get('/', function (req, res, next) {
 /* POST register page. */
 router.post('/', function (req, res, next) {
 	let { Username: name, Password: pass, RepPassword: rpass } = req.body;
-	res.redirect('/login');
-	res.send(
-		`Password for user ${name}: <pre>${pass}</pre> (confirmation: ${rpass})`
-	);
+	if (!name || !pass || !rpass) {
+		return res.send(require('../pages/register')('A field is missing!'));
+	}
+	if (pass !== rpass) {
+		return res.send(
+			require('../pages/register')('The two passwords are different!')
+		);
+	}
+	userController.insert(name, pass).then((result) => {
+		console.log(result.changes.toString());
+		res.redirect('/login');
+	});
+	/* res.send(
+		`Password for user ${name}: <pre>${pass}</pre> (confirmation: <pre>${rpass}</pre>)`
+	); */
 });
 
 module.exports = router;
