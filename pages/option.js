@@ -4,7 +4,7 @@ function getContent(username ='', password =''){
   return html`
     ${require('../templates/head')(
       'velux - options',
-      'css/styles.css',
+      ['css/styles.css', 'css/form.css'],
       'Velux user options'
     )}
       <script>
@@ -19,6 +19,7 @@ function getContent(username ='', password =''){
       <p>Here you can modify your password and username</p>
       <div id="boutonPseudo" onclick="bascule('changerPseudo');">Modify Username</div>
       <div id="boutonMDP" onclick="bascule('changerMDP');">Modify Password</div>
+      <button type="button">Delete Account</button> 
       <div id="changerPseudo>
           <form action="" method="">
             <div class="form-body">
@@ -34,7 +35,7 @@ function getContent(username ='', password =''){
         </form>
       </div>
       <div id="changerMDP">
-        <form action="" method="post">
+        <form action="" method="">
           <div class="form-body">
               <div class="form-el">
                   <label for="oldpassord"><b>Old Password</b></label>
@@ -54,7 +55,7 @@ function getContent(username ='', password =''){
           <div class="form-foot">
               <button type="submit" class="registerButton">Confirmer</button>
           </div>
-      </form>
+        </form>
       </div>
       
       <nav>

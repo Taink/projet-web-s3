@@ -65,6 +65,7 @@ const modifyUsername = async (db, newUsername, OldUsername) => {
  * @param {Promise<Database>} db
  * @param {string} newPassword
  * @param {string} OldPassword
+ * @param {string} username
  */
 const modifyPassword = async (db, OldPassword, newPassword, username) => {
 	if (confirmUser(db, username, OldPassword) == true) {
@@ -76,6 +77,17 @@ const modifyPassword = async (db, OldPassword, newPassword, username) => {
 		);
 	}
 };
+
+/**
+ * @param {Promise<Database>} db
+ * @param {string} username
+ */
+const deleteAccount = async (db, username) => {
+			return (await db).run(
+			'DELETE FROM users WHERE name = ?',
+			username
+		);
+};	
 
 
 
