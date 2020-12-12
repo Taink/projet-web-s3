@@ -19,13 +19,10 @@ router.post('/', function (req, res, next) {
 			require('../pages/register')('The two passwords are different!')
 		);
 	}
-	userController.insert(safeHtml(name), pass).then((result) => {
+	userController.insert(safeHtml`${name}`, pass).then((result) => {
 		console.log(result.changes.toString());
 		res.redirect('/login');
 	});
-	/* res.send(
-		`Password for user ${name}: <pre>${pass}</pre> (confirmation: <pre>${rpass}</pre>)`
-	); */
 });
 
 module.exports = router;

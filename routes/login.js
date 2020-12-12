@@ -1,3 +1,4 @@
+const { safeHtml } = require('common-tags');
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user');
@@ -13,9 +14,9 @@ router.post('/', function (req, res, next) {
 	// let boolean = userController.login(name, pass)
 	// redirect to profile page if name and pass are correct
 	// otherwise redirect to login saying it was incorrect
-	userController.login(name, pass).then((loggedIn) => {
+	userController.login(safeHtml`${name}`, pass).then((loggedIn) => {
 		if (loggedIn) {
-			return res.send(`Password for user ${name}: ${pass}`);
+			return res.send(safeHtml`Password for user ${name}: ${pass}`);
 		}
 		return res.send(require('../pages/login')('Wrong name/password pair!'));
 	});
