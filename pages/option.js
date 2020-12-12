@@ -14,6 +14,7 @@ function getContent(username ='', password =''){
         else	
           document.getElementById(id).style.visibility = "hidden"; 
       }
+      </script>
       <h1>Options</h1>
       <p>Here you can modify your password and username</p>
       <div id="boutonPseudo" onclick="bascule('changerPseudo');">Modify Username</div>
