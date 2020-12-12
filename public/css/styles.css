@@ -1,6 +1,6 @@
-@font-face{
-  font-family :'Consolas';
-  src :url("Consolas.ttf") format(truetype);
+@font-face {
+  font-family: 'Consolas';
+  src: url('Consolas.ttf') format(truetype);
 }
 
 body {
@@ -11,25 +11,36 @@ body {
   left: 0;
 }
 
-h1,p,h3,a {
+h1, p, h3 {
   margin: 50px;
 }
 
-h1{
+h1 {
   color : #fff;
 }
 
-h3{
+h3 {
   color : #fff;
 }
 
-p{
+p {
   color : #aaa;
+}
+
+nav {
+  /* top - right - bottom - left */
+  margin: 50px 0 0 50px;
+}
+
+nav a {
+  display: block;
+  margin: 1.5em 0;
 }
 
 a {
   color: #ccc;
 }
+
 a:hover {
   color: #fff;
 }
