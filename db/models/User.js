@@ -88,12 +88,19 @@ const deleteAccount = async (db, username) => {
 };
 
 /**
- *
  * @param {Promise<Database>} db
  * @param {string} name
  */
 const userIDFromName = async (db, name) => {
 	return (await db).run('SELECT id FROM users WHERE name = ?', name) || -1;
+};
+
+/**
+ * @param {Promise<Database>} db
+ * @param {number} id
+ */
+const userFromID = async (db, id) => {
+	return (await db).run('SELECT * FROM users WHERE id = ?', id) || null;
 };
 
 module.exports = {
@@ -104,4 +111,5 @@ module.exports = {
 	modifyUsername,
 	modifyPassword,
 	deleteAccount,
+	userFromID,
 };
