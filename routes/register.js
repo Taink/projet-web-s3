@@ -11,15 +11,19 @@ router.get('/', function (req, res, next) {
 /* POST register page. */
 router.post('/', function (req, res, next) {
 	let { Username: name, Password: pass, RepPassword: rpass } = req.body;
+
 	if (!name || !pass || !rpass) {
 		return res.send(require('../pages/register')('A field is missing!'));
 	}
+
+	name = safeHtml`${name}`;
+	
 	if (pass !== rpass) {
 		return res.send(
 			require('../pages/register')('The two passwords are different!')
 		);
 	}
-	userController.insert(safeHtml`${name}`, pass).then((result) => {
+	userController.insert(name, pass).then((result) => {
 		console.log(result.changes.toString());
 		res.redirect('/login');
 	});

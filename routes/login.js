@@ -11,10 +11,10 @@ router.get('/', function (req, res, next) {
 /* POST register page. */
 router.post('/', function (req, res, next) {
 	let { Username: name, Password: pass } = req.body;
-	// let boolean = userController.login(name, pass)
-	// redirect to profile page if name and pass are correct
-	// otherwise redirect to login saying it was incorrect
-	userController.login(safeHtml`${name}`, pass).then((loggedIn) => {
+
+	name = safeHtml`${name}`;
+
+	userController.login(name, pass).then((loggedIn) => {
 		if (loggedIn) {
 			return res.send(safeHtml`Password for user ${name}: ${pass}`);
 		}
