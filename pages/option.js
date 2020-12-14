@@ -4,7 +4,7 @@ function getContent(username = '', password = '') {
 	return html`
     ${require('../templates/head')(
 		'velux - options',
-		['css/styles.css', 'css/form.css'],
+		['css/styles.css', 'css/form.css', 'css/options.css'],
 		'Velux user options'
 	)}
       
@@ -13,42 +13,9 @@ function getContent(username = '', password = '') {
 	<div id="boutonPseudo" onclick="bascule('changerPseudo');">Modify Username</div>
 	<div id="boutonMDP" onclick="bascule('changerMDP');">Modify Password</div>
 	<button type="button">Delete Account</button> 
-	<div id="changerPseudo>
-		<form action="" method="">
-		<div class="form-body">
-			<div class="form-el">
-				<label for="NewUsername"><b>New Username</b></label>
-				<input type="text" placeholder="Your new Username" name="NewUsername" id="NewUsername" required>
-			</div>
-		</div>
-		<div class="form-sep"></div>
-		<div class="form-foot">
-			<button type="submit" class="registerButton">Confirmer</button>
-		</div>
-	</form>
-	</div>
-	<div id="changerMDP">
-	<form action="" method="">
-		<div class="form-body">
-			<div class="form-el">
-				<label for="oldpassord"><b>Old Password</b></label>
-				<input type="password" placeholder="Your old password" name="OldPassword" id="OldPassword" required>
-			</div>
-			<div class="form-el">
-				<label for="NewPassword"><b>New Password</b></label>
-				<input type="password" placeholder="Your new password" name="NewPassword" id="NewPassword" required>
-			</div>
-
-			<div class="form-el">
-				<label for="RepPassword"><b>Confirm Password</b></label>
-			<input type="password" placeholder="Confirm password" name="RepPassword" id="RepPassword" required>
-			</div>
-		</div>
-		<div class="form-sep"></div>
-		<div class="form-foot">
-			<button type="submit" class="registerButton">Confirmer</button>
-		</div>
-	</form>
+	<div id="options">
+		${require('../templates/forms/changerPseudo')}
+		${require('../templates/forms/changerMDP')}
 	</div>
 
 	<nav>

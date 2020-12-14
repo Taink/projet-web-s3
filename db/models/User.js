@@ -54,7 +54,7 @@ const confirmUser = async (db, name, password) => {
  */
 const modifyUsername = async (db, newUsername, id) => {
 	return (await db).run(
-		'UPDATE users SET name = ? WHERE id = ?',
+		'UPDATE users SET name = ? WHERE user_id = ?',
 		newUsername,
 		id
 	);
@@ -92,7 +92,9 @@ const deleteAccount = async (db, username) => {
  * @param {string} name
  */
 const userIDFromName = async (db, name) => {
-	return (await db).run('SELECT id FROM users WHERE name = ?', name) || -1;
+	return (
+		(await db).run('SELECT user_id FROM users WHERE name = ?', name) || -1
+	);
 };
 
 /**
@@ -100,7 +102,7 @@ const userIDFromName = async (db, name) => {
  * @param {number} id
  */
 const userFromID = async (db, id) => {
-	return (await db).run('SELECT * FROM users WHERE id = ?', id) || null;
+	return (await db).run('SELECT * FROM users WHERE user_id = ?', id) || null;
 };
 
 module.exports = {

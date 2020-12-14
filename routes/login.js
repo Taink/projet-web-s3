@@ -14,9 +14,10 @@ router.post('/', function (req, res, next) {
 
 	name = safeHtml`${name}`;
 
-	userController.login(name, pass).then((loggedIn) => {
+	userController.login(name, pass).then(async (loggedIn) => {
 		if (loggedIn) {
-			return res.send(safeHtml`Password for user ${name}: ${pass}`);
+			req.session.username = name;
+			return res.redirect('/home');
 		}
 		return res.send(require('../pages/login')('Wrong name/password pair!'));
 	});
