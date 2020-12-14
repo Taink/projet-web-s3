@@ -10,18 +10,16 @@ function getContent(username = '', password = '') {
       
 	<h1>Options</h1>
 	<p>Here you can modify your password and username</p>
-	<div id="boutonPseudo" onclick="bascule('changerPseudo');">Modify Username</div>
-	<div id="boutonMDP" onclick="bascule('changerMDP');">Modify Password</div>
-	<button type="button">Delete Account</button> 
 	<div id="options">
 		${require('../templates/forms/changerPseudo')}
 		${require('../templates/forms/changerMDP')}
 	</div>
-
+  <button id="ButtonDelete" type="button">Delete Account</button> 
+  
 	<nav>
 	<a href="/index">Log out</a>
 	<a href="/home">return homepage</a>
-		</nav>
+	</nav>
 
 	<script>
 	function bascule(id){

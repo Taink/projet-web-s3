@@ -35,6 +35,7 @@ nav {
 nav a {
   display: block;
   margin: 1.5em 0;
+  margin-right: 85%;
 }
 
 a {
