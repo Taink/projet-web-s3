@@ -47,35 +47,36 @@ const confirmUser = async (db, name, password) => {
 	return bcrypt.compare(password, dbHash);
 };
 
-
 /**
  * @param {Promise<Database>} db
  * @param {string} newUsername
  * @param {string} OldUsername
  */
-const modifyUsername = async (db, newUsername, OldUsername) => {
+const modifyUsername = async (db, newUsername, id) => {
 	return (await db).run(
-		'UPDATE users SET name = ? WHERE name = ?',
+		'UPDATE users SET name = ? WHERE id = ?',
 		newUsername,
-		OldUsername
+		id
 	);
 };
 
 /**
  * @param {Promise<Database>} db
  * @param {string} newPassword
- * @param {string} OldPassword
+ * @param {string} oldPassword
  * @param {string} username
  */
-const modifyPassword = async (db, OldPassword, newPassword, username) => {
-	if (confirmUser(db, username, OldPassword) == true) {
-			const hashPass = await bcrypt.hash(newPassword, SALT_ROUNDS);
-			return (await db).run(
-			'UPDATE users SET password = ? WHERE password = ?',
-			hashPass,
-			OldPassword
-		);
-	}
+const modifyPassword = async (db, oldPassword, newPassword, username) => {
+	if (!(await confirmUser(db, username, oldPassword)))
+		throw 'Old password is incorrect!';
+
+	const hashPass = await bcrypt.hash(newPassword, SALT_ROUNDS);
+	return (await db).run(
+		'UPDATE users SET password = ? WHERE password = ? AND name = ?',
+		hashPass,
+		oldPassword,
+		username
+	);
 };
 
 /**
@@ -83,16 +84,24 @@ const modifyPassword = async (db, OldPassword, newPassword, username) => {
  * @param {string} username
  */
 const deleteAccount = async (db, username) => {
-			return (await db).run(
-			'DELETE FROM users WHERE name = ?',
-			username
-		);
-};	
+	return (await db).run('DELETE FROM users WHERE name = ?', username);
+};
 
-
+/**
+ *
+ * @param {Promise<Database>} db
+ * @param {string} name
+ */
+const userIDFromName = async (db, name) => {
+	return (await db).run('SELECT id FROM users WHERE name = ?', name) || -1;
+};
 
 module.exports = {
 	createUserTable,
 	insertUser,
 	confirmUser,
+	userIDFromName,
+	modifyUsername,
+	modifyPassword,
+	deleteAccount,
 };
