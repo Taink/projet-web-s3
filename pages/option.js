@@ -14,7 +14,7 @@ function getContent(username = '', password = '') {
 		${require('../templates/forms/changerPseudo')}
 		${require('../templates/forms/changerMDP')}
 	</div>
-  <button id="ButtonDelete" type="button">Delete Account</button> 
+  <button onclick ="sure()" id="ButtonDelete" type="button">Delete Account</button> 
   
 	<nav>
 	<a href="/index">Log out</a>
@@ -22,12 +22,15 @@ function getContent(username = '', password = '') {
 	</nav>
 
 	<script>
-	function bascule(id){
-	if (document.getElementById(id).style.visibility == "hidden")
-		document.getElementById(id).style.visibility = "visible"; 
-	else	
-		document.getElementById(id).style.visibility = "hidden"; 
-	}
+	function sure(){
+    if(confirm("Are you sure ?")){
+      //delete account
+      console.log('Account deleted');
+    } else{
+      //cancel action
+      console.log("The account was not deleted");
+    }
+  }
 	</script>
 
 	${require('../templates/foot')()}
